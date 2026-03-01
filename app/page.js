@@ -61,6 +61,11 @@ export default function Home() {
     }
   };
 
+  const handleResetChat = () => {
+    setMessages([]);
+    setHasUploaded(false);
+  };
+
   return (
     <div className={styles.container}>
       <Header />
@@ -78,6 +83,7 @@ export default function Home() {
               messages={messages}
               isTyping={isTyping}
               onSendMessage={handleSendMessage}
+              onReset={handleResetChat}
             />
           </div>
         </div>

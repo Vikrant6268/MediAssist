@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import styles from './ChatInterface.module.css';
 
-const ChatInterface = ({ messages, isTyping, onSendMessage }) => {
+const ChatInterface = ({ messages, isTyping, onSendMessage, onReset }) => {
     const [input, setInput] = useState('');
     const messagesEndRef = useRef(null);
 
@@ -25,8 +25,25 @@ const ChatInterface = ({ messages, isTyping, onSendMessage }) => {
     return (
         <div className={styles.container}>
             <header className={styles.header}>
-                <div className={styles.statusIndicator}></div>
-                <h2>AI Medical Assistant</h2>
+                <div className={styles.headerLeft}>
+                    <div className={styles.statusIndicator}></div>
+                    <h2>AI Medical Assistant</h2>
+                </div>
+                {messages.length > 0 && (
+                    <button
+                        className={styles.resetButton}
+                        onClick={onReset}
+                        title="Clear Chat History"
+                        aria-label="Clear Chat History"
+                    >
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            <line x1="10" y1="11" x2="10" y2="17"></line>
+                            <line x1="14" y1="11" x2="14" y2="17"></line>
+                        </svg>
+                    </button>
+                )}
             </header>
 
             <div className={styles.messagesContainer}>
